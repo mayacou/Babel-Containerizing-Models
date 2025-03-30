@@ -1,10 +1,13 @@
 # Import loaders here
 from loadModels.load_mbart import load_mbart
+from loadModels.load_small_100 import load_small_100
 
 def load_model_by_name(model_name):
     match model_name:
         case "mbart":
             return load_mbart()
+        case "small":
+            return load_small_100()
         # Add more cases here as needed
         case _:
             raise ValueError(f"Model {model_name} is not supported.")
@@ -12,12 +15,16 @@ def load_model_by_name(model_name):
 
 # Import translates here
 from useModels.use_mbart import mbart_translate
+from useModels.use_small_100 import small_100_translate
 
 def translate_with_model(model_name, text, model, tokenizer, source_lang, target_lang, config=None, debug=False):
     match model_name:
         case "mbart":
             return mbart_translate(text, model, tokenizer, source_lang, target_lang, config, debug)
+        case "small":
+            return small_100_translate(text, model, tokenizer, source_lang, target_lang, config, debug)
         # Add more cases here as needed
+
         case _:
             raise ValueError(f"Model {model_name} is not supported.")
 
