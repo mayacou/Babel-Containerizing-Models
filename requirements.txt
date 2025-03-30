@@ -2,8 +2,5 @@ torch
 transformers
 datasets
 python-dotenv
-<<<<<<< HEAD
 sentencepiece
 sacremoses
-=======
->>>>>>> a0c426296e806d1c03fae531f7b2029cfd039ec2
