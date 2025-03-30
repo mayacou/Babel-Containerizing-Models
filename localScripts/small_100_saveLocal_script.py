@@ -1,7 +1,7 @@
 # load_small100.py
 import torch
 from transformers import M2M100ForConditionalGeneration
-
+from local_tokenizers.small_100 import SMALL100Tokenizer
 # come back to tokenzier
 
 MODE_NAME = "alirezamsh/small100"
