@@ -14,4 +14,8 @@ def translate(text: str, source_lang: str, target_lang: str) -> str:
         early_stopping=False,
         forced_bos_token_id=forced_bos_token_id
     )
+<<<<<<< HEAD
     return tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+=======
+    return tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+>>>>>>> a0c4262 (added mbart config)

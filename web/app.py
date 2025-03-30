@@ -1,4 +1,5 @@
 def route_to_model(text, target_lang):
+<<<<<<< HEAD
     if target_lang in ["de"]:
         from useModels.use_example import translate
         return translate(text, "eng_Latn", f"{target_lang}_Latn")
@@ -19,6 +20,12 @@ def route_to_model(text, target_lang):
         from useModels. use_helsinki_en_fi import translate
         return translate(text)
 
+=======
+    if target_lang in ["fr", "de"]:
+        from useModels.use_example import translate
+        return translate(text, "eng_Latn", f"{target_lang}_Latn")
+
+>>>>>>> a0c4262 (added mbart config)
     elif target_lang in ["tr"]:
         from useModels.use_example import translate
         return translate(text, "en", target_lang)

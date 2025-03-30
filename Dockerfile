@@ -12,4 +12,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # Set default command (can override this when running)
+<<<<<<< HEAD
 CMD ["python3", "-m", "web.app"]
+=======
+CMD ["python3", "web/app.py"]
+>>>>>>> a0c4262 (added mbart config)
