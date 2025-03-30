@@ -6,6 +6,18 @@ def route_to_model(text, target_lang):
     elif target_lang in ["tr"]:
         from useModels.use_example import translate
         return translate(text, "en", target_lang)
+    
+    elif target_lang in ["hu"]:
+        from useModels.use_helsinki_hu import translate
+        return translate(text)
+    
+    elif target_lang in ["lt"]:
+        from useModels.use_helsinki_lt import translate
+        return translate(text)
+    
+    elif target_lang in ["sk"]:
+        from useModels.use_helsinki_sk import translate
+        return translate(text)
 
     else:
         return "❌ No model available for this language"
