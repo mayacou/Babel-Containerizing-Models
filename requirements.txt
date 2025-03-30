@@ -2,3 +2,5 @@ torch
 transformers
 datasets
 python-dotenv
+sentencepiece
+sacremoses

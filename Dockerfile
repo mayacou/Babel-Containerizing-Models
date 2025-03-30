@@ -12,4 +12,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # Set default command (can override this when running)
-CMD ["python3", "web/app.py"]
+CMD ["python3", "-m", "web.app"]

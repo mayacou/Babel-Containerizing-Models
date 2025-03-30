@@ -1,7 +1,23 @@
 def route_to_model(text, target_lang):
-    if target_lang in ["fr", "de"]:
+    if target_lang in ["de"]:
         from useModels.use_example import translate
         return translate(text, "eng_Latn", f"{target_lang}_Latn")
+
+    elif target_lang in ["fr"]:
+        from useModels.use_helsinki_en_fr import translate
+        return translate(text)
+    
+    elif target_lang in ["et"]:
+        from useModels.use_helsinki_en_et import translate
+        return translate(text)
+
+    elif target_lang in ["el"]:
+        from useModels.use_helsinki_en_el import translate
+        return translate(text)
+    
+    elif target_lang in ["fi"]:
+        from useModels. use_helsinki_en_fi import translate
+        return translate(text)
 
     elif target_lang in ["tr"]:
         from useModels.use_example import translate
