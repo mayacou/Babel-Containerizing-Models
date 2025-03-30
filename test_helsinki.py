@@ -2,6 +2,7 @@ from useModels.use_helsinki_en_fr import translate as translate_fr
 from useModels.use_helsinki_en_fi import translate as translate_fi
 from useModels.use_helsinki_en_el import translate as translate_el
 from useModels.use_helsinki_en_et import translate as translate_et
+from useModels.use_helsinki_en_sv import translate as translate_sv
 
 def test_translation(text, target_lang):
    
@@ -13,6 +14,8 @@ def test_translation(text, target_lang):
       translated_text = translate_el(text)
    elif target_lang == "et":
       translated_text = translate_et(text)
+   elif target_lang == "sv":
+      translated_text = translate_sv(text)
 
    if translated_text:
       print(f"Translated text: {translated_text}")
