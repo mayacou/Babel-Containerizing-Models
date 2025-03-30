@@ -40,3 +40,15 @@ def small_100_translate(text, model, tokenizer, source_language, target_language
         if debug:
             print(f"Error during inference: {e}")
         return None
+
+
+from loadModels.load_small_100 import load_small_100
+
+def translate(text, target_language, source_language="en", config=None, debug=True):
+    # Load the model and tokenizer using the load_small_100 function
+    model, tokenizer, _ = load_small_100()
+
+    # Call small_100_translate to perform the translation
+    return small_100_translate(text, model, tokenizer, source_language, target_language, config, debug)
+
+

@@ -72,3 +72,13 @@ def mbart_translate(text, model, tokenizer, source_language, target_language, co
         if debug:
             print(f"Error during inference: {e}")
         return None
+    
+from loadModels.load_mbart import load_mbart
+
+def translate(text, target_language, source_language="en", config=None, debug=True):
+    # Load the model and tokenizer using the load_mbart function
+    model, tokenizer, _ = load_mbart()
+
+    # Call mbart_translate to perform the translation
+    return mbart_translate(text, model, tokenizer, source_language, target_language, config, debug)
+

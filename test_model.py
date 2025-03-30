@@ -1,6 +1,7 @@
 # Import loaders here
 from loadModels.load_mbart import load_mbart
 from loadModels.load_small_100 import load_small_100
+from loadModels.load_nllb import load_nllb
 
 def load_model_by_name(model_name):
     match model_name:
@@ -8,6 +9,8 @@ def load_model_by_name(model_name):
             return load_mbart()
         case "small":
             return load_small_100()
+        case "nllb":
+            return load_nllb()
         # Add more cases here as needed
         case _:
             raise ValueError(f"Model {model_name} is not supported.")
@@ -16,6 +19,7 @@ def load_model_by_name(model_name):
 # Import translates here
 from useModels.use_mbart import mbart_translate
 from useModels.use_small_100 import small_100_translate
+from useModels.use_nllb import nllb_translate
 
 def translate_with_model(model_name, text, model, tokenizer, source_lang, target_lang, config=None, debug=False):
     match model_name:
@@ -23,6 +27,8 @@ def translate_with_model(model_name, text, model, tokenizer, source_lang, target
             return mbart_translate(text, model, tokenizer, source_lang, target_lang, config, debug)
         case "small":
             return small_100_translate(text, model, tokenizer, source_lang, target_lang, config, debug)
+        case "nllb":
+            return nllb_translate(text, model, tokenizer, source_lang, target_lang, config, debug)
         # Add more cases here as needed
 
         case _:
@@ -41,7 +47,7 @@ def test_translation(model_name, text, source_lang, target_lang):
 
 def main():
     # Set the model name and other variables here
-    model_name = "mbart"  # Change this to your desired model
+    model_name = "nllb"  # Change this to your desired model
     text = "Hello, how are you?"  # Change this to the text you want to translate
     source_lang = "en"  # Change this to the source language code
     target_lang = "es"  # Change this to the target language code
