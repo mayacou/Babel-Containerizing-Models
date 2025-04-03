@@ -4,3 +4,14 @@ datasets
 python-dotenv
 sentencepiece
 sacremoses
+PyMuPDF==1.25.5
+ocrmypdf
+pytesseract
+pdf2image
+Pillow
+python-docx
+matplotlib
+tesseract-ocr
+poppler-utils
+ghostscript
+docx2pdf

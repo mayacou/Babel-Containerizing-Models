@@ -37,5 +37,5 @@ def run_overlay_test(input_path):
 
 if __name__ == "__main__":
     # Replace this with your actual input file path
-    input_file = "examples/sample.pdf"  # or .docx
+    input_file = "./parseTest.docx"  # ..pdf or .docx
     run_overlay_test(input_file)

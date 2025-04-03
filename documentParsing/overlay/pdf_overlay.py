@@ -11,7 +11,8 @@ def overlay_translated_text(input_pdf, translated_blocks_per_page, output_pdf):
 
             # 1. Draw white rectangle to "erase" original text
             rect = fitz.Rect(x0, y0, x1, y1)
-            page.draw_rect(rect, fill=(1, 1, 1), color=None)
+            page.draw_rect(rect, fill_color=(1, 1, 1), stroke_color=None)  # ✅ Compatible
+
 
             # 2. Estimate font size based on height
             height = y1 - y0
