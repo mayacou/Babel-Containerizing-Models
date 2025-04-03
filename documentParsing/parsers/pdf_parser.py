@@ -29,6 +29,7 @@ def extract_text_blocks_combined(pdf_path):
                 # Placeholder bbox if needed
                 ocr_blocks.append({
                     "text": ocr_text.strip(),
+                    # TODO: Use actual image position if needed: page.get_image_bbox(xref)
                     "bbox": (50, 50 + img_index * 50, 400, 100 + img_index * 50),
                     "source": "ocr"
                 })
