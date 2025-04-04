@@ -41,7 +41,7 @@ LANGUAGE_MAP = {
 
 
 def nllb_translate(text, model, tokenizer, source_language, target_language, config=None, debug=True):
-    config = config or {"BEAM_SIZE": 5, "LENGTH_PENALTY": 1.2, "MAX_LENGTH": 999}
+    config = config or {"BEAM_SIZE": 5, "LENGTH_PENALTY": 1.2, "MAX_LENGTH": 1000000000}
     
     source_language = LANGUAGE_MAP.get(source_language, None)
     target_language = LANGUAGE_MAP.get(target_language, None)

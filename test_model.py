@@ -47,8 +47,11 @@ def test_translation(model_name, text, source_lang, target_lang):
 
 def main():
     # Set the model name and other variables here
-    model_name = "nllb"  # Change this to your desired model
-    text = "Hello, how are you?"  # Change this to the text you want to translate
+    model_name = "mbart"  # Change this to your desired model
+    text = """
+The quick brown fox jumps over the lazy dog. This well-known pangram is widely used to test typewriters, keyboards, fonts, and other text-related software. By including all the letters of the alphabet, it serves as an efficient way to examine how a piece of equipment handles the full range of characters. Over the years, variations of this sentence have appeared in a multitude of contexts, ranging from typography and design to linguistic """
+ 
+
     source_lang = "en"  # Change this to the source language code
     target_lang = "es"  # Change this to the target language code
 
