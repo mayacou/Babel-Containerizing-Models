@@ -1,5 +1,17 @@
+# TODO potential change way we get root directory by changing PYTHONPATH
+
 import sys
+import os
 import json
+
+# Get the parent directory of the current file
+# If you're in the `scripts` directory, this will correctly point to the project root
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Add the root directory to sys.path
+sys.path.append(root_dir)
+
+print("SYS PATH: " , sys.path)
 
 def translate_for_single_language(text, source_lang, target_lang):
     if target_lang in ["fr", "de"]:
@@ -27,15 +39,3 @@ def route_to_model(text, source_lang, target_langs):
     
     return translated_texts
 
-if __name__ == "__main__":
-    if len(sys.argv) < 4:
-        print("Usage: python model_router.py <source_text> <source_lang> <target_lang1> <target_lang2> ...")
-        sys.exit(1)
-
-    source_text = sys.argv[1]
-    source_lang = sys.argv[2]
-    target_langs = sys.argv[3:]
-
-    translated_texts = route_to_model(source_text, source_lang, target_langs)
-
-    print(json.dumps(translated_texts))
