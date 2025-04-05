@@ -1,5 +1,5 @@
 import fitz
-from ocr.ocr_utils import ocr_image_bytes  # you’ll create this
+from ocr.ocr_pdf import ocr_image_bytes  # you’ll create this
 
 def extract_text_blocks_combined(pdf_path):
     doc = fitz.open(pdf_path)
