@@ -6,7 +6,7 @@ def has_char(text):
 
 
 def parse_docx(doc, text_map):
-   # === Step 1: Collect paragraphs ===
+   # Collect Paragraph info
    for idx, para in enumerate(doc.paragraphs):
       if para.text.strip():
          text_map.append({
@@ -15,7 +15,7 @@ def parse_docx(doc, text_map):
             "text": para.text
          })
 
-   # === Step 2: Collect table cell text ===
+   # Collect table info
    for table_idx, table in enumerate(doc.tables):
       for row_idx, row in enumerate(table.rows):
          for col_idx, cell in enumerate(row.cells):
