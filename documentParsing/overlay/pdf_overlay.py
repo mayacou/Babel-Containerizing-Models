@@ -9,23 +9,40 @@ def overlay_translated_text(input_pdf, translated_blocks_per_page, output_pdf):
             x0, y0, x1, y1 = block["bbox"]
             text = block["text"]
 
-            # 1. Draw white rectangle to "erase" original text
-            rect = fitz.Rect(x0, y0, x1, y1)
-            page.draw_rect(rect, fill_color=(1, 1, 1), stroke_color=None)  # ✅ Compatible
-
-
-            # 2. Estimate font size based on height
+            # ⬇️ Shrink bounding box by 10% vertically, 5% horizontally
+            width = x1 - x0
             height = y1 - y0
-            font_size = min(max(height * 0.7, 6), 14)  # keeps it between 6 and 14pt
+            shrink_h = height * 0.03
+            shrink_w = width * 0.005
 
-            # 3. Insert wrapped text using textbox
-            page.insert_textbox(
-                rect,
-                text,
-                fontsize=font_size,
-                fontname="helv",  # Helvetica (default), or "Times-Roman"
-                align=0,  # 0 = left, 1 = center, 2 = right, 3 = justify
+            rect = fitz.Rect(
+                x0 + shrink_w,
+                y0 + shrink_h / 2,
+                x1 - shrink_w,
+                y1 - shrink_h / 2
             )
+
+            # 1. Draw white background
+            page.draw_rect(rect, fill=(1, 1, 1), color=(1,0,0), fill_opacity=0.9)
+
+            # 2. Try inserting text
+            font_size = 9  # fixed for now, adjust later if you want dynamic sizing
+            try:
+                inserted = page.insert_textbox(
+                    rect,
+                    text,
+                    fontsize=font_size,
+                    fontname="helv",
+                    align=3,
+                    color=(0, 0, 0)
+                )
+
+                if inserted == 0:
+                    print(f"[WARN] Text didn't fit: '{text[:30]}...' @ {rect}")
+
+            except Exception as e:
+                print(f"[ERROR] Failed to insert: {e}")
+                page.insert_text((x0, y0), text, fontsize=font_size, color=(1, 0, 0))
 
     doc.save(output_pdf)
     print(f"✅ Overlay saved to: {output_pdf}")
