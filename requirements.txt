@@ -15,3 +15,4 @@ tesseract-ocr
 poppler-utils
 ghostscript
 docx2pdf
+pdfplumber

@@ -1,5 +1,5 @@
 import pdfplumber
-from utils.file_utils import write_text_to_pdf
+from ..utils.file_utils import write_text_to_pdf
 def extract_embedded_text(pdf_path):
     full_text = ""
     with pdfplumber.open(pdf_path) as pdf:

@@ -1,16 +1,19 @@
 import os
-from utils.file_utils import normalize_input_file
+from .utils.file_utils import normalize_input_file
 
 # PDF imports
-from parsers.pdf_parser import convert_pdf_to_clean_text_pdf
+from .parsers.pdf_parser import convert_pdf_to_clean_text_pdf
 # from overlay.pdf_clean import write_clean_pdf_with_images
 import fitz  # PyMuPDF
 
 # DOCX imports
 from docx import Document
-from parsers.docx_parser import parse_docx
-from ocr.ocr_docx import get_image_text
-from overlay.docx_overlay import overlay_docx
+from .parsers.docx_parser import parse_docx
+from .ocr.ocr_docx import get_image_text
+from .overlay.docx_overlay import overlay_docx
+
+# Model Imports for testing
+from useModels.use_helsinki_en_fr import translate as translate_fr
 
 def run_pdf_pipeline(pdf_path):
     print(f"📄 Processing PDF: {pdf_path}")
@@ -35,8 +38,8 @@ def run_docx_pipeline(docx_path):
 
     texts_to_translate = [entry.get("text") or entry.get("ocr_text") for entry in text_map]
 
-    # Placeholder translation (mock)
-    translated_texts = [text.upper() for text in texts_to_translate]
+    # Test translation
+    translated_texts = [translate_fr(text) for text in texts_to_translate]
 
     updated_doc = overlay_docx(doc, text_map, translated_texts, image_map)
 
@@ -47,7 +50,7 @@ def run_docx_pipeline(docx_path):
 
 
 if __name__ == "__main__":
-    input_file = "./parseTest.pdf"  # or "./parseTest.docx"
+    input_file = "parseTest.docx"  # or "./parseTest.docx"
     os.makedirs("output", exist_ok=True)
 
     normalized_input, ext = normalize_input_file(input_file)
