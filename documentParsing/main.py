@@ -1,10 +1,10 @@
 import os
-from .utils.file_utils import normalize_input_file
+# Utility functions
+from utils.file_utils import normalize_input_file
 
-# PDF imports
-from .parsers.pdf_parser import convert_pdf_to_clean_text_pdf
-# from overlay.pdf_clean import write_clean_pdf_with_images
-import fitz  # PyMuPDF
+# PDF processing pipeline
+from parsers.pdf_parser import convert_pdf_to_clean_text_pdf
+#import fitz  # PyMuPDF not being used
 
 # DOCX imports
 from docx import Document
@@ -20,6 +20,7 @@ def run_pdf_pipeline(pdf_path):
 
     base_name = os.path.splitext(os.path.basename(pdf_path))[0]
     output_path = os.path.join("output", f"{base_name}_plaintext.pdf")
+    os.makedirs("output", exist_ok=True)  # Ensure the output folder exists
 
     convert_pdf_to_clean_text_pdf(pdf_path, output_path)
 
@@ -50,7 +51,7 @@ def run_docx_pipeline(docx_path):
 
 
 if __name__ == "__main__":
-    input_file = "parseTest.docx"  # or "./parseTest.docx"
+    input_file = "./input/stressTestDejavu.pdf"  # or "./parseTest.docx"
     os.makedirs("output", exist_ok=True)
 
     normalized_input, ext = normalize_input_file(input_file)
