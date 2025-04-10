@@ -1,5 +1,5 @@
 import pdfplumber
-from utils.file_utils import write_text_to_pdf
+from documentParsing.utils.file_utils import write_text_to_pdf
 import re
 
 APPROVED_FONTS = [

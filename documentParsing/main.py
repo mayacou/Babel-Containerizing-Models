@@ -1,16 +1,16 @@
 import os
 # Utility functions
-from utils.file_utils import normalize_input_file
+from documentParsing.utils.file_utils import normalize_input_file
 
 # PDF processing pipeline
-from parsers.pdf_parser import convert_pdf_to_clean_text_pdf
+from documentParsing.parsers.pdf_parser import convert_pdf_to_clean_text_pdf
 #import fitz  # PyMuPDF not being used
 
 # DOCX imports
 from docx import Document
-from .parsers.docx_parser import parse_docx
-from .ocr.ocr_docx import get_image_text
-from .overlay.docx_overlay import overlay_docx
+from documentParsing.parsers.docx_parser import parse_docx
+#from .ocr.ocr_docx import get_image_text
+from documentParsing.overlay.docx_overlay import overlay_docx
 
 # Model Imports for testing
 from useModels.use_helsinki_en_fr import translate as translate_fr
@@ -35,7 +35,7 @@ def run_docx_pipeline(docx_path):
     image_map = []
 
     text_map = parse_docx(doc, text_map)
-    text_map, image_map = get_image_text(doc, text_map, image_map)
+    #text_map, image_map = get_image_text(doc, text_map, image_map)
 
     texts_to_translate = [entry.get("text") or entry.get("ocr_text") for entry in text_map]
 
@@ -51,7 +51,7 @@ def run_docx_pipeline(docx_path):
 
 
 if __name__ == "__main__":
-    input_file = "./input/stressTestDejavu.pdf"  # or "./parseTest.docx"
+    input_file = "./input/stressTest.docx"  # or "./parseTest.docx"
     os.makedirs("output", exist_ok=True)
 
     normalized_input, ext = normalize_input_file(input_file)
